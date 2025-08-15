@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBBS/BDS Admission Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">MBBS/BDS Admission Predictor</h1>
+
+        <form id="prediction-form">
+            <!-- Student Information -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Student Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="air" class="form-label">Student AIR (All India Rank)</label>
+                            <input type="number" class="form-control" id="air" name="air" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="domicile_state" class="form-label">Student's Domicile State</label>
+                            <select class="form-select" id="domicile_state" name="domicile_state" required>
+                                <option selected disabled value="">Choose...</option>
+                                {% for state in domicile_states %}
+                                <option value="{{ state }}">{{ state }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counselling Information -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Counselling Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Counselling Authority</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="counselling_authority" id="mcc" value="mcc" checked>
+                                <label class="form-check-label" for="mcc">MCC (15% All India Quota)</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="counselling_authority" id="state" value="state" disabled>
+                                <label class="form-check-label" for="state">State (85% State Quota) - Coming Soon</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mcc-options">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="quota_name" class="form-label">Quota Name (select one or more)</label>
+                                <select class="form-select" id="quota_name" name="quota_name" multiple required>
+                                    {% for quota in quota_names %}
+                                    <option value="{{ quota }}">{{ quota }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-select" id="category" name="category" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    {% for cat in categories %}
+                                    <option value="{{ cat }}">{{ cat }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="sub_category" class="form-label">Sub Category</label>
+                                <select class="form-select" id="sub_category" name="sub_category" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    {% for sub_cat in sub_categories %}
+                                    <option value="{{ sub_cat }}">{{ sub_cat }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                             <div class="col-md-6 mb-3">
+                                <label class="form-label">Course</label>
+                                <div>
+                                    {% for course in courses %}
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="course" id="{{ course|lower }}" value="{{ course }}" checked>
+                                        <label class="form-check-label" for="{{ course|lower }}">{{ course }}</label>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Preferred State of Study</label>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>Select the states you are interested in:</span>
+                                <button type="button" class="btn btn-sm btn-secondary" id="select-all-states">Select All</button>
+                            </div>
+                            <div class="row" id="states-matrix">
+                                {% for state in states %}
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input state-checkbox" type="checkbox" name="preferred_states" value="{{ state }}" id="state-{{ loop.index }}">
+                                        <label class="form-check-label" for="state-{{ loop.index }}">{{ state }}</label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Predict Admission Chances</button>
+            </div>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results-section" class="mt-5" style="display: none;">
+            <div id="spinner" class="text-center mb-3" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div id="student-info-display" class="card mb-4"></div>
+            <div id="results-table"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

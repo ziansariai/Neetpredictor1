@@ -1,0 +1,79 @@
+[
+    {
+        "year": 2023,
+        "institute_id": "INST001",
+        "institute_name": "AIIMS, New Delhi",
+        "quota_name": "All India",
+        "category": "General",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 1,
+        "air_close": 57
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST002",
+        "institute_name": "JIPMER, Puducherry",
+        "quota_name": "All India",
+        "category": "General",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 58,
+        "air_close": 277
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST003",
+        "institute_name": "Govt. Medical College, Kozhikode, Kerala",
+        "quota_name": "All India",
+        "category": "General",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 278,
+        "air_close": 1000
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST004",
+        "institute_name": "Maulana Azad Medical College, New Delhi",
+        "quota_name": "All India",
+        "category": "OBC",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 100,
+        "air_close": 300
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST005",
+        "institute_name": "Vardhman Mahavir Medical College & Safdarjung Hospital, New Delhi",
+        "quota_name": "All India",
+        "category": "SC",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 500,
+        "air_close": 2000
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST006",
+        "institute_name": "Lady Hardinge Medical College for Women, New Delhi",
+        "quota_name": "All India",
+        "category": "General",
+        "sub_category": "NO",
+        "course": "BDS",
+        "air_open": 3000,
+        "air_close": 5000
+    },
+    {
+        "year": 2023,
+        "institute_id": "INST007",
+        "institute_name": "Deemed University of Medical Sciences, Pune, Maharashtra",
+        "quota_name": "Deemed/Paid Seats Quota",
+        "category": "General",
+        "sub_category": "NO",
+        "course": "MBBS",
+        "air_open": 10000,
+        "air_close": 50000
+    }
+]
