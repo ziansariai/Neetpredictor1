@@ -1,1 +1,12 @@
-
+{
+  "name": "mbbs-admission-predictor",
+  "version": "1.0.0",
+  "description": "MBBS/BDS Admission Predictor App",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": ["flask", "admission", "predictor"],
+  "author": "YourName",
+  "license": "MIT"
+}
